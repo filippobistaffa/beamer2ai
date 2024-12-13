@@ -128,11 +128,15 @@ if __name__ == "__main__":
         input_pdf_path="../main.pdf",
         scripts=[
             {
-                "text": 'Welcome to the presentation of our work entitled "Recommending Green Routes for Pedestrians to Reduce the Exposure to Air Pollutants in Barcelona". This is joint work between the Artificial Intelligence Research Institute and the UPF University in Barcelona.',
+                "text": 'Welcome to the presentation of our work entitled "Recommending Green Routes for Pedestrians ' +
+                        'to Reduce the Exposure to Air Pollutants in Barcelona". This is joint work between the ' +
+                        'Artificial Intelligence Research Institute and the UPF University in Barcelona.',
                 "pdf_page_number": 1,
             },
             {
-                "text": 'The main issue we tackle in this work is how to recommend green routes to pedestrians that minimize the exposure to air pollutants in a city. Pedestrians are the most vulnerable individuals when it comes to air pollution, which can lead to serious health problems.',
+                "text": 'The main issue we tackle in this work is how to recommend green routes to pedestrians ' +
+                        'that minimize the exposure to air pollutants in a city. Pedestrians are the most vulnerable ' +
+                        'individuals when it comes to air pollution, which can lead to serious health problems.',
                 "pdf_page_number": 2,
             },
         ],
