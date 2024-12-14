@@ -157,9 +157,9 @@ if __name__ == "__main__":
                 "pdf_page_number": 5,
             },
             {
-                "text": 'The exposure is computed by considering historical air quality data provided by the Barcelona\' city council. ' +
-                        'This data source is characterized by very high spatial resolution, since it provides a measurement for each road. ' +
-                        'On the other hand, it is characterized by low temporal resolution, since it is published once per year.',
+                "text": 'The exposure to pollutants is computed by considering historical air quality data provided by the Barcelona\' city council. ' +
+                        'This data source is characterized by very high spatial resolution, since it provides an air quality measurement for ' +
+                        'each road in the map. On the other hand, it is characterized by low temporal resolution, since it is published once per year.',
                 "pdf_page_number": 6,
             },
             {
@@ -169,15 +169,15 @@ if __name__ == "__main__":
             },
             {
                 "text": 'To account for this heterogeneity, our prototype incorporates the technique we recently proposed ' +
-                        'based a Graph Neural Network trained on the high-resolution historical data. ' +
+                        'based on a Graph Neural Network trained on the high-resolution historical data. ' +
                         'This aspect is fundamental as real-time data can differ significantly from historical data in a certain location. ' +
                         'Therefore, accounting for real-time data allows us to recommend green routes with more accurate, hence lower, exposure.',
                 "pdf_page_number": 8,
             },
             {
                 "text": 'This is the architecture of our prototype, showing how the different components interact. ' +
-                        'Each component is implemented in Python, using state of the art libraries for fetching data from OpenStreetMap, ' +
-                        'routing and showing the results to the user.',
+                        'Each component is implemented in Python, using state of the art libraries for features such as ' +
+                        'fetching data from OpenStreetMap, routing and showing the results to the user.',
                 "pdf_page_number": 9,
             },
         ],
