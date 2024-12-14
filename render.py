@@ -1,5 +1,4 @@
 import warnings
-warnings.filterwarnings("ignore", ".*To copy construct from a tensor, it is recommended to use*")
 warnings.filterwarnings("ignore", ".*It is possible to construct malicious pickle data which*")
 warnings.filterwarnings("ignore", ".*is deprecated*")
 
@@ -9,12 +8,11 @@ os.environ["TRANSFORMERS_VERBOSITY"] = "error"
 # PDF image extraction
 import fitz
 
-# Bark
-from bark import SAMPLE_RATE, generate_audio, preload_models
-from scipy.io.wavfile import write as write_wav
-# download and load all models
-print("Loading Bark models into GPU...")
-preload_models()
+# MeloTTS
+from melo.api import TTS
+model = TTS(language="EN", device="auto")
+speaker_ids = model.hps.data.spk2id
+speed = 1.0
 
 # standard packages
 import numpy as np
@@ -25,16 +23,7 @@ import re
 
 def text_to_audio(text, output_audio_path, voice_preset):
     print("Generating audio from sentences...")
-    silence = np.zeros(int(0.25 * SAMPLE_RATE))
-    sentences = re.split(r'(?<!\d)\.', text)
-    audio_chunks = []
-    for sentence in sentences:
-        if len(sentence) == 0:
-            continue
-        print(sentence.strip())
-        audio_array = generate_audio(sentence.strip() + '.', history_prompt=voice_preset)
-        audio_chunks += [audio_array, silence.copy()]
-    write_wav(output_audio_path, rate=SAMPLE_RATE, data=np.concatenate(audio_chunks))
+    model.tts_to_file(text, speaker_ids[voice_preset], output_audio_path, speed=speed)
 
 
 def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, output_video_path, resolution, show_ffmpeg):
@@ -104,26 +93,25 @@ def concatenate_chunks(temp_chunks, output_video_path):
             subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
 
 
-def generate_video(input_pdf_path, dpi, scripts, voice_preset, output_video_path, resolution, show_ffmpeg=False, repeat=1, skip=False):
+def generate_video(input_pdf_path, dpi, scripts, voice_preset, output_video_path, resolution, show_ffmpeg=False, skip=False):
     if not(skip):
-        for i in range(repeat):
-            temp_chunks = []
-            for script in scripts:
-                temp_chunk = tempfile.NamedTemporaryFile(suffix=".mp4")
-                temp_chunks.append(temp_chunk)
-                text_page_to_video(
-                    text=script["text"],
-                    page_number=script["pdf_page_number"],
-                    voice_preset=voice_preset,
-                    input_pdf_path=input_pdf_path,
-                    dpi=dpi,
-                    output_video_path=temp_chunk.name,
-                    resolution=resolution,
-                    show_ffmpeg=show_ffmpeg
-                )
-            concatenate_chunks(
-                temp_chunks=temp_chunks,
-                output_video_path=output_video_path.format(i)
+        temp_chunks = []
+        for script in scripts:
+            temp_chunk = tempfile.NamedTemporaryFile(suffix=".mp4")
+            temp_chunks.append(temp_chunk)
+            text_page_to_video(
+                text=script["text"],
+                page_number=script["pdf_page_number"],
+                voice_preset=voice_preset,
+                input_pdf_path=input_pdf_path,
+                dpi=dpi,
+                output_video_path=temp_chunk.name,
+                resolution=resolution,
+                show_ffmpeg=show_ffmpeg
             )
-            for temp_chunk in temp_chunks:
-                temp_chunk.close()
+        concatenate_chunks(
+            temp_chunks=temp_chunks,
+            output_video_path=output_video_path
+        )
+        for temp_chunk in temp_chunks:
+            temp_chunk.close()
