@@ -16,9 +16,9 @@ if __name__ == "__main__":
                 "pdf_page_number": 1,
             },
             {
-                "text": 'El principal problema que abordamos en este trabajo es cómo recomendar rutas verdes a los peatones ' +
+                "text": 'El principal problema que abordamos en este trabajo es cómo recomendar rutas verdes para peatones ' +
                         'que minimicen la exposición a contaminantes del aire en una ciudad. Los peatones son los individuos más vulnerables ' +
-                        'cuando se trata de la contaminación del aire, que puede ocasionar serios problemas de salud.',
+                        'cuando se trata de la contaminación del aire, que puede causar serios problemas de salud.',
                 "pdf_page_number": 2,
             },
             {
@@ -46,20 +46,20 @@ if __name__ == "__main__":
             },
             {
                 "text": 'Nuestro prototipo también puede incorporar los datos proporcionados por siete sensores de calidad del aire en tiempo real en Barcelona. ' +
-                        'Dado que hay pocos puntos de datos, esta fuente de datos tiene una resolución espacial muy baja en comparación con la histórica.',
+                        'Dado que hay tan pocos sensores, esta fuente de datos tiene una resolución espacial muy baja en comparación con la histórica.',
                 "pdf_page_number": 7,
             },
             {
                 "text": 'Para tener en cuenta esta heterogeneidad, nuestro prototipo incorpora la técnica que propusimos recientemente ' +
                         'basada en una Red Neuronal Gráfica entrenada con los datos históricos de alta resolución. ' +
-                        'Este aspecto es fundamental, ya que los datos en tiempo real pueden diferir significativamente de los históricos en una ubicación específica. ' +
+                        'Este aspecto es fundamental, ya que los datos en tiempo real pueden diferir significativamente de los históricos en una ubicación dada. ' +
                         'Por lo tanto, considerar los datos en tiempo real nos permite recomendar rutas verdes con una exposición más precisa, ' +
                         'y por lo tanto más baja, para el usuario.',
                 "pdf_page_number": 8,
             },
             {
                 "text": 'Esta es la arquitectura de nuestro prototipo, que muestra cómo interactúan los diferentes componentes. ' +
-                        'Cada componente está implementado en Python, utilizando bibliotecas de última generación para características como ' +
+                        'Cada componente está implementado en Python, utilizando librerías de última generación para ejecutar tareas como ' +
                         'obtener datos de OpenStreetMap, calcular rutas y mostrar los resultados al usuario.',
                 "pdf_page_number": 9,
             },
