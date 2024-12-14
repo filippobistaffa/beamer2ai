@@ -1,17 +1,20 @@
-Generate Video Presentation from Beamer Slides
+Generate Video Presentations from Beamer Slides
 ===================
+This project allows one to generate a video presentation based on Beamer slides. Specifically, provided a text script for each slide, the presentation is narrated using the voice generated with [Bark](https://github.com/suno-ai/bark), a state-of-the-art Text2Speech AI model.
+
 
 Dependencies
 ----------
+
+This project requires a modern version of `ffmpeg` to render the video. On Ubuntu, it can be installed with:
+
+    sudo apt install ffmpeg
+
 Although not mandatory, running the project in a Python *virtual environment* is recommended:
 
     python3 -m venv venv
     source venv/bin/activate
 
-Required dependencies can then be installed via `pip` with the following command:
+Required Python dependencies can then be installed via `pip` with the following command:
 
     pip install --upgrade -r requirements.txt
-
-This project also requires a modern version of `ffmpeg` to render the video, which can be installed with:
-
-    sudo apt install ffmpeg
