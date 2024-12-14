@@ -65,6 +65,7 @@ if __name__ == "__main__":
             },
         ],
         voice_preset="v2/en_speaker_8",
-        output_video_path="output.mp4",
-        resolution=(3840, 2160)
+        output_video_path="output_{}.mp4",
+        resolution=(3840, 2160),
+        repeat=5
     )

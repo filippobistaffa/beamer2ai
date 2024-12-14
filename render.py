@@ -98,22 +98,23 @@ def concatenate_chunks(temp_chunks, output_video_path):
             subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
 
 
-def generate_video(input_pdf_path, scripts, voice_preset, output_video_path, resolution):
-    temp_chunks = []
-    for script in scripts:
-        temp_chunk = tempfile.NamedTemporaryFile(suffix=".mp4")
-        temp_chunks.append(temp_chunk)
-        text_page_to_video(
-            text=script["text"],
-            page_number=script["pdf_page_number"],
-            voice_preset=voice_preset,
-            input_pdf_path=input_pdf_path,
-            output_video_path=temp_chunk.name,
-            resolution=resolution
+def generate_video(input_pdf_path, scripts, voice_preset, output_video_path, resolution, repeat=1):
+    for i in range(repeat):
+        temp_chunks = []
+        for script in scripts:
+            temp_chunk = tempfile.NamedTemporaryFile(suffix=".mp4")
+            temp_chunks.append(temp_chunk)
+            text_page_to_video(
+                text=script["text"],
+                page_number=script["pdf_page_number"],
+                voice_preset=voice_preset,
+                input_pdf_path=input_pdf_path,
+                output_video_path=temp_chunk.name,
+                resolution=resolution
+            )
+        concatenate_chunks(
+            temp_chunks=temp_chunks,
+            output_video_path=output_video_path.format(i)
         )
-    concatenate_chunks(
-        temp_chunks=temp_chunks,
-        output_video_path=output_video_path
-    )
-    for temp_chunk in temp_chunks:
-        temp_chunk.close()
+        for temp_chunk in temp_chunks:
+            temp_chunk.close()
