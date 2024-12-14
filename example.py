@@ -37,7 +37,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 5,
             },
             {
-                "text": 'The exposure to pollutants is computed by considering historical air quality data provided by the Barcelona\' city council. ' +
+                "text": 'The exposure to pollutants is computed by considering historical air quality data provided by the Barcelona\'s city council. ' +
                         'This data source is characterized by very high spatial resolution, since it provides an air quality measurement for ' +
                         'each road in the map. On the other hand, it is characterized by low temporal resolution, since it is published once per year.',
                 "pdf_page_number": 6,
@@ -90,7 +90,7 @@ if __name__ == "__main__":
             },
             {
                 "text": 'As mentioned before, results can vary significantly when considering real-time data, especially when the route is ' +
-                        'in the close proximity of a sensors whose measurements are very different from historical data, like in this example.',
+                        'in the close proximity of a sensor whose measurements are very different from historical data, like in this example.',
                 "pdf_page_number": 4,
             },
         ],
