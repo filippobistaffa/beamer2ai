@@ -65,7 +65,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 9,
             },
         ],
-        voice_preset="EN-BR",
+        voice_preset="EN-Default",
         output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        voice_preset="EN-BR",
+        voice_preset="EN-Default",
         output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
         skip=False
