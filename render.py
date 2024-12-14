@@ -12,7 +12,7 @@ import fitz
 from melo.api import TTS
 model = TTS(language="EN", device="auto")
 speaker_ids = model.hps.data.spk2id
-speed = 1.0
+speed = 0.8
 
 # standard packages
 import numpy as np
