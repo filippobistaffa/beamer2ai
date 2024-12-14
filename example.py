@@ -86,13 +86,23 @@ if __name__ == "__main__":
                 "text": 'The prototype then shows the actual green and shortest routes on the map, by means of the OpenStreetMap API.',
                 "pdf_page_number": 2,
             },
+            {
+                "text": 'Similarly, we can compute green routes that also takes into account real-time air quality sensor data. ' +
+                        'In this case, our algorithm based on a graph neural network first interpolates the low resolution data from the sensors, ' +
+                        'and then computes the resulting green route.',
+                "pdf_page_number": 3,
+            },
+            {
+                "text": 'As mentioned before, results can vary significantly when considering real-time data, especially when the route is ' +
+                        'in the close proximity of a sensors whose measurements are very different from historical data, like in this example.',
+                "pdf_page_number": 4,
+            },
         ],
         voice_preset="v2/en_speaker_8",
         output_video_path="chunk_2_{}.mp4",
         resolution=(3840, 2160),
         repeat=5,
-        skip=False,
-        show_ffmpeg=True
+        skip=True
     )
 
     generate_video(
@@ -100,7 +110,8 @@ if __name__ == "__main__":
         dpi=600,
         scripts=[
             {
-                "text": 'Our tests show a reduction of NO2 exposure of −7.23%, corroborating the indication that ' +
+                "text": 'Overall, our tests conducted on popular starting and destination points in Barcelona show ' +
+                        'a reduction of NO2 exposure of −7.23%. These results corroborate the indication that ' +
                         'green routes are very beneficial both for individual and public administrations. ' +
                         'Similar results have been obtained in other major cities, demonstrating that green routes ' +
                         'can be a simple, yet very effective solution to improve citizens\' health.',
@@ -111,5 +122,5 @@ if __name__ == "__main__":
         output_video_path="chunk_3_{}.mp4",
         resolution=(3840, 2160),
         repeat=5,
-        skip=True
+        skip=False
     )
