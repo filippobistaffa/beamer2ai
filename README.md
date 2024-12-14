@@ -24,4 +24,4 @@ Notes on Bark
 ----------
 
 Bark supports a variety of voices and languages, which can be explored [here](https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683?v=bc67cff786b04b50b3ceb756fd05f68c).
-Each Bark execution generates "stochastic" voices from scratch, so results can vary from one execution to another.
+Each Bark execution generates "stochastic" voices from scratch, so results can vary from one execution to another. For this reason, it is convenient to [generate multiple instances](https://github.com/filippobistaffa/beamer2ai/blob/83f22dec2bcf6ec13a4c6863ea7c2e642b870045/example.py#L71) of the same video, and later select the best one.
