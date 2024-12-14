@@ -20,12 +20,13 @@ preload_models()
 import numpy as np
 import subprocess
 import tempfile
+import re
 
 
 def text_to_audio(text, output_audio_path, voice_preset):
     print("Generating audio from sentences...")
     silence = np.zeros(int(0.25 * SAMPLE_RATE))
-    sentences = text.split(".")
+    sentences = re.split(r'(?<!\d)\.', text)
     audio_chunks = []
     for sentence in sentences:
         if len(sentence) == 0:
