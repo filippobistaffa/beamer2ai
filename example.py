@@ -8,6 +8,7 @@ if __name__ == "__main__":
 
     generate_video(
         input_pdf_path="beamer.pdf",
+        dpi=600,
         scripts=[
             {
                 "text": 'Welcome to the presentation of our work entitled "Recommending Green Routes for Pedestrians ' +
@@ -65,7 +66,50 @@ if __name__ == "__main__":
             },
         ],
         voice_preset="v2/en_speaker_8",
-        output_video_path="output_{}.mp4",
+        output_video_path="chunk_1_{}.mp4",
         resolution=(3840, 2160),
-        repeat=10
+        repeat=5,
+        skip=True
+    )
+
+    generate_video(
+        input_pdf_path="screenshots.pdf",
+        dpi=100,
+        scripts=[
+            {
+                "text": 'In this demonstration, we show how to calculate the green route from Plaza de Catalunya to the Sagrada Familia. ' +
+                        'The prototype shows basic statistics such as the length of the green route compared to the shortest one, ' +
+                        'and the reduction in terms of air pollutant exposure, NO2 in this example.',
+                "pdf_page_number": 1,
+            },
+            {
+                "text": 'The prototype then shows the actual green and shortest routes on the map, by means of the OpenStreetMap API.',
+                "pdf_page_number": 2,
+            },
+        ],
+        voice_preset="v2/en_speaker_8",
+        output_video_path="chunk_2_{}.mp4",
+        resolution=(3840, 2160),
+        repeat=5,
+        skip=False,
+        show_ffmpeg=True
+    )
+
+    generate_video(
+        input_pdf_path="beamer.pdf",
+        dpi=600,
+        scripts=[
+            {
+                "text": 'Our tests show a reduction of NO2 exposure of −7.23%, corroborating the indication that ' +
+                        'green routes are very beneficial both for individual and public administrations. ' +
+                        'Similar results have been obtained in other major cities, demonstrating that green routes ' +
+                        'can be a simple, yet very effective solution to improve citizens\' health.',
+                "pdf_page_number": 10,
+            },
+        ],
+        voice_preset="v2/en_speaker_8",
+        output_video_path="chunk_3_{}.mp4",
+        resolution=(3840, 2160),
+        repeat=5,
+        skip=True
     )
