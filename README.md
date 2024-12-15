@@ -18,3 +18,9 @@ Although not mandatory, running the project in a Python *virtual environment* is
 Required Python dependencies can then be installed via `pip` with the following command:
 
     pip install --upgrade -r requirements.txt
+
+
+Notes on MeloTTS
+----------
+
+MeloTTS generates a voice arguably less realistic than [Bark](https://github.com/filippobistaffa/beamer2ai/tree/bark), but it's more reliable. MeloTTS works better than Bark with non-English languages as well (see the [example](https://github.com/filippobistaffa/beamer2ai/blob/melo/spanish.py) for Spanish).
