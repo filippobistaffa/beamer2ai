@@ -15,7 +15,6 @@ from melo.api import TTS
 import numpy as np
 import subprocess
 import tempfile
-import re
 
 
 def text_to_audio(text, output_audio_path, voice_preset, speed=1):
