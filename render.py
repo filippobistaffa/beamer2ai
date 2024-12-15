@@ -38,33 +38,32 @@ def text_to_audio(text, output_audio_path, voice_preset):
 
 
 def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, output_video_path, resolution, show_ffmpeg):
+    print("Encoding video and muxing audio...")
     with tempfile.NamedTemporaryFile(suffix=".png") as temp_image:
-        print("Encoding video and muxing audio...")
-        doc = fitz.open(input_pdf_path)
-        page = doc[page_number - 1]
-        pix = page.get_pixmap(dpi=dpi)
-        pix.save(temp_image.name)
-        ffmpeg_command = [
-            "ffmpeg",
-            "-y",
-            "-loop", "1",
-            "-i", temp_image.name,
-            "-i", input_audio_path,
-            "-c:v", "libx264",
-            "-tune", "stillimage",
-            "-c:a", "aac",
-            "-b:a", "192k",
-            "-vf", "scale={}:{}".format(*resolution),
-            "-pix_fmt", "yuv420p",
-            "-shortest",
-            output_video_path
-        ]
-        if show_ffmpeg:
-            subprocess.run(ffmpeg_command, check=True)
-        else:
-            with open(os.devnull, "w") as devnull:
-                subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
-        doc.close()
+        with fitz.open(input_pdf_path) as doc:
+            page = doc[page_number - 1]
+            pix = page.get_pixmap(dpi=dpi)
+            pix.save(temp_image.name)
+            ffmpeg_command = [
+                "ffmpeg",
+                "-y",
+                "-loop", "1",
+                "-i", temp_image.name,
+                "-i", input_audio_path,
+                "-c:v", "libx264",
+                "-tune", "stillimage",
+                "-c:a", "aac",
+                "-b:a", "192k",
+                "-vf", "scale={}:{}".format(*resolution),
+                "-pix_fmt", "yuv420p",
+                "-shortest",
+                output_video_path
+            ]
+            if show_ffmpeg:
+                subprocess.run(ffmpeg_command, check=True)
+            else:
+                with open(os.devnull, "w") as devnull:
+                    subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
 
 
 def text_page_to_video(text, voice_preset, input_pdf_path, dpi, page_number, output_video_path, resolution, show_ffmpeg):
