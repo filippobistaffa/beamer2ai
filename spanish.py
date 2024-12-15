@@ -15,7 +15,7 @@ if __name__ == "__main__":
             {
                 "text": 'El principal problema que abordamos en este trabajo es cómo recomendar rutas verdes a peatones ' +
                         'que minimicen la exposición a contaminantes del aire en una ciudad. Los peatones son los individuos más vulnerables ' +
-                        'cuando se trata de contaminación del aire (que puede causar serios problemas de salud).',
+                        'cuando se trata de contaminación del aire, dado que pueden sufrir problemas de salud muy serios.',
                 "pdf_page_number": 2,
             },
             {
@@ -30,26 +30,29 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
             {
-                "text": 'En este trabajo proporcionamos una solución a estas preguntas de investigación con nuestro prototipo de rutas verdes, mostrándolo ' +
-                        'para la ciudad de Barcelona. Específicamente, podemos calcular rutas que minimicen la exposición a contaminantes del aire, ' +
-                        'en lugar de minimizar la distancia total como se hace usualmente en los problemas normales de enrutamiento.',
+                "text": 'En este trabajo proporcionamos una solución a estas preguntas de investigación con nuestro prototipo ' +
+                        'de rutas verdes, mostrándolo para la ciudad de Barcelona. Específicamente, podemos calcular ' +
+                        'rutas que minimicen la exposición a contaminantes del aire, en lugar de minimizar ' +
+                        'la distancia total como se hace usualmente en los problemas normales de enrutamiento.',
                 "pdf_page_number": 5,
             },
             {
-                "text": 'La exposición a contaminantes se calcula considerando datos históricos de calidad del aire proporcionados por el ayuntamiento de Barcelona. ' +
-                        'Esta fuente de datos se caracteriza por una resolución espacial muy alta, ya que proporciona una medición de calidad del aire para ' +
-                        'cada calle del mapa. Por otro lado, se caracteriza por una baja resolución temporal, ya que se publica una vez al año.',
+                "text": 'La exposición a contaminantes se calcula considerando datos históricos de calidad del aire ' +
+                        'proporcionados por el ayuntamiento de Barcelona. Esta fuente de datos se caracteriza por una resolución ' +
+                        'espacial muy alta, ya que proporciona una medición de calidad del aire para cada calle del mapa. ' +
+                        'Por otro lado, se caracteriza por una baja resolución temporal, ya que se publica una vez al año.',
                 "pdf_page_number": 6,
             },
             {
-                "text": 'Nuestro prototipo también puede incorporar los datos proporcionados por siete sensores de calidad del aire en tiempo real en Barcelona. ' +
-                        'Dado que hay tan pocos sensores, esta fuente de datos tiene una resolución espacial muy baja en comparación con la histórica.',
+                "text": 'Nuestro prototipo también puede incorporar los datos proporcionados por siete sensores de calidad del aire ' +
+                        'en tiempo real en Barcelona. Dado que hay tan pocos sensores, esta fuente de datos ' +
+                        'tiene una resolución espacial muy baja en comparación con la histórica.',
                 "pdf_page_number": 7,
             },
             {
                 "text": 'Para tener en cuenta esta heterogeneidad, nuestro prototipo incorpora la técnica que propusimos recientemente ' +
-                        'basada en una Red Neuronal Gráfica entrenada con los datos históricos de alta resolución. ' +
-                        'Este aspecto es fundamental, ya que los datos en tiempo real pueden diferir significativamente de los históricos en una ubicación dada. ' +
+                        'basada en una Red Neuronal Gráfica entrenada con los datos históricos de alta resolución. Este aspecto es fundamental, ' +
+                        'ya que los datos en tiempo real pueden diferir significativamente de los históricos en una ubicación dada. ' +
                         'Por lo tanto, considerar los datos en tiempo real nos permite recomendar rutas verdes con una exposición más precisa, ' +
                         'y por lo tanto más baja, para el usuario.',
                 "pdf_page_number": 8,
@@ -65,7 +68,7 @@ if __name__ == "__main__":
         speed=1,
         output_video_path="es_chunk_1.mp4",
         resolution=(3840, 2160),
-        skip=False
+        skip=True
     )
 
     generate_video(
@@ -74,23 +77,24 @@ if __name__ == "__main__":
         scripts=[
             {
                 "text": 'En esta demostración, mostramos cómo calcular la ruta verde desde Plaza de Cataluña hasta la Sagrada Familia. ' +
-                        'El prototipo muestra estadísticas básicas como la longitud de la ruta verde en comparación con la más corta, ' +
-                        'y la reducción en términos de exposición a contaminantes del aire (N O dos en este caso).',
+                        'En este caso, el prototipo muestra estadísticas básicas como la longitud de la ruta verde en comparación ' +
+                        'con la más corta, y la reducción en términos de exposición al N O dos.',
                 "pdf_page_number": 1,
             },
             {
-                "text": 'El prototipo luego muestra las rutas verde y más corta en el mapa, a través de la API de OpenStreetMap.',
+                "text": 'El prototipo luego muestra la ruta verde y la más corta en el mapa, a través de la API de Open Strit Map.',
                 "pdf_page_number": 2,
             },
             {
-                "text": 'De manera similar, podemos calcular rutas verdes que también tienen en cuenta los datos de los sensores de calidad del aire en tiempo real. ' +
-                        'En este caso, nuestro algoritmo basado en una red neuronal gráfica primero interpola los datos de baja resolución de los sensores, ' +
-                        'y luego calcula la ruta verde resultante.',
+                "text": 'De manera similar, podemos calcular rutas verdes que también tienen en cuenta los datos de los sensores ' +
+                        'de calidad del aire en tiempo real. En este caso, nuestro algoritmo basado en una red neuronal gráfica ' +
+                        'primero interpola los datos de baja resolución de los sensores y luego calcula la ruta verde resultante.',
                 "pdf_page_number": 3,
             },
             {
-                "text": 'Como se mencionó antes, los resultados pueden variar significativamente al considerar datos en tiempo real, especialmente cuando la ruta ' +
-                        'está en proximidad a un sensor cuyas mediciones son muy diferentes de los datos históricos, como en este ejemplo.',
+                "text": 'Como se mencionó antes, los resultados pueden variar significativamente al considerar ' +
+                        'datos en tiempo real, especialmente cuando la ruta está en proximidad a un sensor cuyas mediciones ' +
+                        'son muy diferentes de los datos históricos, como en este ejemplo.',
                 "pdf_page_number": 4,
             },
         ],
@@ -118,5 +122,5 @@ if __name__ == "__main__":
         speed=1,
         output_video_path="es_chunk_3.mp4",
         resolution=(3840, 2160),
-        skip=False
+        skip=True
     )
