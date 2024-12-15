@@ -25,7 +25,7 @@ if __name__ == "__main__":
             },
             {
                 "text": 'De manera similar, las administraciones públicas preocupadas por la salud de sus ciudadanos podrían estar interesadas ' +
-                        'en una herramienta capaz de proporcionar alternativas más verdes a las rutas calculadas por Google Maps, ' +
+                        'en una herramienta capaz de proporcionar alternativas más verdes a las rutas calculadas por Gugol Maps, ' +
                         'que no considera la exposición a contaminantes del aire.',
                 "pdf_page_number": 4,
             },
@@ -56,8 +56,8 @@ if __name__ == "__main__":
             },
             {
                 "text": 'Esta es la arquitectura de nuestro prototipo, que muestra cómo interactúan los diferentes componentes. ' +
-                        'Cada componente está implementado en Python, utilizando librerías de última generación para ejecutar tareas como ' +
-                        'obtener datos de OpenStreetMap, calcular rutas y mostrar los resultados al usuario.',
+                        'Cada componente está implementado en Paiton, utilizando librerías de última generación para ejecutar tareas como ' +
+                        'obtener datos de Open Strit Map, calcular rutas y mostrar los resultados al usuario.',
                 "pdf_page_number": 9,
             },
         ],
