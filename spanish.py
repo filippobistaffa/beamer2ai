@@ -68,7 +68,7 @@ if __name__ == "__main__":
         speed=1,
         output_video_path="es_chunk_1.mp4",
         resolution=(3840, 2160),
-        skip=True
+        skip=False
     )
 
     generate_video(
@@ -122,5 +122,5 @@ if __name__ == "__main__":
         speed=1,
         output_video_path="es_chunk_3.mp4",
         resolution=(3840, 2160),
-        skip=True
+        skip=False
     )
