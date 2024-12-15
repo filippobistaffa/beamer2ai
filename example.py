@@ -63,9 +63,10 @@ if __name__ == "__main__":
             },
         ],
         voice_preset="EN-Default",
+        speed=0.8,
         output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
-        skip=False
+        skip=True
     )
 
     generate_video(
@@ -95,9 +96,10 @@ if __name__ == "__main__":
             },
         ],
         voice_preset="EN-Default",
+        speed=0.8,
         output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
-        skip=False
+        skip=True
     )
 
     generate_video(
@@ -114,6 +116,7 @@ if __name__ == "__main__":
             },
         ],
         voice_preset="EN-Default",
+        speed=0.8,
         output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
         skip=False

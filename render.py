@@ -10,9 +10,6 @@ import fitz
 
 # MeloTTS
 from melo.api import TTS
-model = TTS(language="EN", device="auto")
-speaker_ids = model.hps.data.spk2id
-speed = 0.8
 
 # standard packages
 import numpy as np
@@ -21,8 +18,10 @@ import tempfile
 import re
 
 
-def text_to_audio(text, output_audio_path, voice_preset):
+def text_to_audio(text, output_audio_path, voice_preset, speed=1):
     print("Generating audio from sentences...")
+    model = TTS(language=voice_preset[:2], device="auto")
+    speaker_ids = model.hps.data.spk2id
     model.tts_to_file(text, speaker_ids[voice_preset], output_audio_path, speed=speed)
 
 
@@ -56,12 +55,13 @@ def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, outp
         doc.close()
 
 
-def text_page_to_video(text, voice_preset, input_pdf_path, dpi, page_number, output_video_path, resolution, show_ffmpeg):
+def text_page_to_video(text, voice_preset, speed, input_pdf_path, dpi, page_number, output_video_path, resolution, show_ffmpeg):
     with tempfile.NamedTemporaryFile(suffix=".wav") as temp_audio:
         text_to_audio(
             text=text,
             output_audio_path=temp_audio.name,
-            voice_preset=voice_preset
+            voice_preset=voice_preset,
+            speed=speed
         )
         page_audio_to_video(
             input_pdf_path=input_pdf_path,
@@ -93,7 +93,7 @@ def concatenate_chunks(temp_chunks, output_video_path):
             subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
 
 
-def generate_video(input_pdf_path, dpi, scripts, voice_preset, output_video_path, resolution, show_ffmpeg=False, skip=False):
+def generate_video(input_pdf_path, dpi, scripts, voice_preset, speed, output_video_path, resolution, show_ffmpeg=False, skip=False):
     if not(skip):
         temp_chunks = []
         for script in scripts:
@@ -103,6 +103,7 @@ def generate_video(input_pdf_path, dpi, scripts, voice_preset, output_video_path
                 text=script["text"],
                 page_number=script["pdf_page_number"],
                 voice_preset=voice_preset,
+                speed=speed,
                 input_pdf_path=input_pdf_path,
                 dpi=dpi,
                 output_video_path=temp_chunk.name,
