@@ -27,8 +27,8 @@ def text_to_audio(text, output_audio_path, voice_preset, speed=1):
 def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, output_video_path, resolution, show_ffmpeg):
     print("Encoding video and muxing audio...")
     with tempfile.NamedTemporaryFile(suffix=".png") as temp_image:
-        with fitz.open(input_pdf_path) as doc:
-            page = doc[page_number - 1]
+        with fitz.open(input_pdf_path) as pdf:
+            page = pdf[page_number - 1]
             pix = page.get_pixmap(dpi=dpi)
             pix.save(temp_image.name)
             ffmpeg_command = [
