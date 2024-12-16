@@ -1,6 +1,6 @@
-Generate Video Presentations from Beamer Slides
+Generate Video Presentations from PDF Slides
 ===================
-This project allows one to generate a video presentation based on Beamer slides. Specifically, provided a text script for each slide, the presentation is narrated using the voice generated with [MeloTTS](https://github.com/myshell-ai/MeloTTS), a SOTA TTS model.
+This project allows one to generate a video presentation based on PDF slides. Specifically, provided a text script for each slide, the presentation is narrated using the voice generated with [MeloTTS](https://github.com/myshell-ai/MeloTTS), a SOTA TTS model.
 
 
 Dependencies
