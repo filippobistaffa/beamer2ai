@@ -23,4 +23,6 @@ Required Python dependencies can then be installed via `pip` with the following 
 Notes on MeloTTS _vs_ Bark
 ----------
 
-MeloTTS generates a voice arguably less realistic than [Bark](https://github.com/filippobistaffa/beamer2ai/tree/bark), but it's more reliable. MeloTTS works better than Bark with [non-English languages](https://github.com/myshell-ai/MeloTTS?tab=readme-ov-file#introduction) as well (see the [example](https://github.com/filippobistaffa/beamer2ai/blob/melo/spanish.py) for Spanish). Finally, MeloTTS is faster than Bark (fast enough for CPU real-time inference).
+- MeloTTS generates a voice arguably less realistic than [Bark](https://github.com/filippobistaffa/beamer2ai/tree/bark), but it's more reliable.
+- MeloTTS works better than Bark with [non-English languages](https://github.com/myshell-ai/MeloTTS?tab=readme-ov-file#introduction) as well (see the [example](https://github.com/filippobistaffa/beamer2ai/blob/melo/spanish.py) for Spanish).
+- MeloTTS is faster than Bark (fast enough for CPU real-time inference).
