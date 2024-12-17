@@ -11,6 +11,8 @@ os.environ["TRANSFORMERS_VERBOSITY"] = "error"
 import fitz
 
 # StyleTTS2
+import nltk
+nltk.download('punkt_tab')
 from styletts2 import tts
 model = tts.StyleTTS2()
 SAMPLE_RATE = 24000
@@ -35,9 +37,8 @@ def text_to_audio(text, output_audio_path):
         audio_array = model.inference(
             sentence.strip() + '.',
             output_sample_rate=SAMPLE_RATE,
-            #diffusion_steps=10,
-            alpha=1,
-            beta=1
+            #alpha=0.7,
+            #beta=1
         )
         audio_chunks += [audio_array, silence.copy()]
     write_wav(output_audio_path, rate=SAMPLE_RATE, data=np.concatenate(audio_chunks))
