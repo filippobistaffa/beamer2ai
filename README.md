@@ -1,6 +1,6 @@
 Generate Video Presentations from PDF Slides
 ===================
-This project allows one to generate a video presentation based on PDF slides. Specifically, given a text script for each slide, the presentation is narrated using the voice generated with [Bark](https://github.com/suno-ai/bark), a SOTA TTS model. We also provide a version of this project using [MeloTTS](https://github.com/filippobistaffa/beamer2ai/tree/melo), which is more reliable but less realistic than Bark.
+This project allows one to generate a video presentation based on PDF slides. Specifically, given a text script for each slide, the presentation is narrated using the voice generated with [Bark](https://github.com/suno-ai/bark), a SOTA TTS model. We also provide a version of this project using [MeloTTS](https://github.com/filippobistaffa/beamer2ai/tree/melo) and [StyleTTS2](https://github.com/filippobistaffa/beamer2ai/tree/styletts2) models.
 
 
 Dependencies
