@@ -3,9 +3,6 @@ from render import generate_video
 
 if __name__ == "__main__":
 
-    # Bark voice presets
-    # https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683?v=bc67cff786b04b50b3ceb756fd05f68c
-
     generate_video(
         input_pdf_path="beamer.pdf",
         dpi=600,
@@ -61,14 +58,12 @@ if __name__ == "__main__":
             {
                 "text": 'This is the architecture of our prototype, showing how the different components interact. ' +
                         'Each component is implemented in Python, using state of the art libraries for features such as ' +
-                        'fetching data from OpenStreetMap, routing and showing the results to the user.',
+                        'fetching data from Open Street Map, routing and showing the results to the user.',
                 "pdf_page_number": 9,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_1_{}.mp4",
+        output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
-        repeat=5,
         skip=True
     )
 
@@ -77,17 +72,17 @@ if __name__ == "__main__":
         dpi=100,
         scripts=[
             {
-                "text": 'In this demonstration, we show how to calculate the green route from Plaza de Catalunya to the Sagrada Familia. ' +
+                "text": 'In this demonstration, we show how to calculate the green route from Plaza de Cataluña to the Sagrada Familia. ' +
                         'The prototype shows basic statistics such as the length of the green route compared to the shortest one, ' +
-                        'and the reduction in terms of air pollutant exposure, NO2 in this example.',
+                        'and the reduction in terms of air pollutant exposure, N O two in this example.',
                 "pdf_page_number": 1,
             },
             {
-                "text": 'The prototype then shows the actual green and shortest routes on the map, by means of the OpenStreetMap API.',
+                "text": 'The prototype then shows the actual green and shortest routes on the map, by means of the Open Street Map API.',
                 "pdf_page_number": 2,
             },
             {
-                "text": 'Similarly, we can compute green routes that also takes into account real-time air quality sensor data. ' +
+                "text": 'Similarly, we can compute green routes that also takes in-to account real-time air quality sensor data. ' +
                         'In this case, our algorithm based on a graph neural network first interpolates the low resolution data from the sensors, ' +
                         'and then computes the resulting green route.',
                 "pdf_page_number": 3,
@@ -98,11 +93,9 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_2_{}.mp4",
+        output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
-        repeat=5,
-        skip=True
+        skip=False
     )
 
     generate_video(
@@ -111,16 +104,14 @@ if __name__ == "__main__":
         scripts=[
             {
                 "text": 'Overall, our tests conducted on popular starting and destination points in Barcelona show ' +
-                        'a reduction of NO2 exposure of −7.23%. These results corroborate the indication that ' +
+                        'a reduction of N O two exposure of minus seven percent. These results corroborate the indication that ' +
                         'green routes are very beneficial both for individual and public administrations. ' +
                         'Similar results have been obtained in other major cities, demonstrating that green routes ' +
                         'can be a simple, yet very effective solution to improve citizens\' health.',
                 "pdf_page_number": 10,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_3_{}.mp4",
+        output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
-        repeat=5,
-        skip=False
+        skip=True
     )
