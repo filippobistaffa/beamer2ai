@@ -60,7 +60,7 @@ if __name__ == "__main__":
             },
             {
                 "text": 'This is the architecture of our prototype, showing how the different components interact. ' +
-                        'Each component is implemented in Python, using state of the art libraries for features such as ' +
+                        'Each component is implemented in Python, using state-of-the-art libraries for features such as ' +
                         'fetching data from OpenStreetMap, routing and showing the results to the user.',
                 "pdf_page_number": 9,
             },
@@ -87,14 +87,14 @@ if __name__ == "__main__":
                 "pdf_page_number": 2,
             },
             {
-                "text": 'Similarly, we can compute green routes that also takes into account real-time air quality sensor data. ' +
-                        'In this case, our algorithm based on a graph neural network first interpolates the low resolution data from the sensors, ' +
+                "text": 'Similarly, we can compute green routes that also take into account real-time air quality sensor data. ' +
+                        'In this case, our algorithm based on a graph neural network first interpolates the low-resolution data from the sensors, ' +
                         'and then computes the resulting green route.',
                 "pdf_page_number": 3,
             },
             {
                 "text": 'As mentioned before, results can vary significantly when considering real-time data, especially when the route is ' +
-                        'in the close proximity of a sensors whose measurements are very different from historical data, like in this example.',
+                        'in the close proximity of a sensor whose measurements are very different from historical data, like in this example.',
                 "pdf_page_number": 4,
             },
         ],
