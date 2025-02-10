@@ -65,7 +65,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 9,
             },
         ],
-        model_path="voices/en_US-joe-medium.onnx",
+        model_path="voices/en_GB-alan-medium.onnx",
         output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        model_path="voices/en_US-joe-medium.onnx",
+        model_path="voices/en_GB-alan-medium.onnx",
         output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 10,
             },
         ],
-        model_path="voices/en_US-joe-medium.onnx",
+        model_path="voices/en_GB-alan-medium.onnx",
         output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
         skip=False
