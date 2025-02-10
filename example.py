@@ -5,6 +5,7 @@ if __name__ == "__main__":
 
     # Piper models
     # https://github.com/rhasspy/piper/blob/master/VOICES.md
+    # https://rhasspy.github.io/piper-samples/
 
     generate_video(
         input_pdf_path="beamer.pdf",
