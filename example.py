@@ -3,8 +3,8 @@ from render import generate_video
 
 if __name__ == "__main__":
 
-    # Bark voice presets
-    # https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683?v=bc67cff786b04b50b3ceb756fd05f68c
+    # Piper models
+    # https://github.com/rhasspy/piper/blob/master/VOICES.md
 
     generate_video(
         input_pdf_path="beamer.pdf",
@@ -65,16 +65,15 @@ if __name__ == "__main__":
                 "pdf_page_number": 9,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_1_{}.mp4",
+        model_path="voices/en_US-joe-medium.onnx",
+        output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
-        repeat=5,
-        skip=True
+        skip=False
     )
 
     generate_video(
         input_pdf_path="screenshots.pdf",
-        dpi=100,
+        dpi=200,
         scripts=[
             {
                 "text": 'In this demonstration, we show how to calculate the green route from Plaza de Catalunya to the Sagrada Familia. ' +
@@ -98,11 +97,10 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_2_{}.mp4",
+        model_path="voices/en_US-joe-medium.onnx",
+        output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
-        repeat=5,
-        skip=True
+        skip=False
     )
 
     generate_video(
@@ -118,9 +116,8 @@ if __name__ == "__main__":
                 "pdf_page_number": 10,
             },
         ],
-        voice_preset="v2/en_speaker_8",
-        output_video_path="chunk_3_{}.mp4",
+        model_path="voices/en_US-joe-medium.onnx",
+        output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
-        repeat=5,
         skip=False
     )
