@@ -7,9 +7,10 @@ import tempfile
 import time
 import os
 
-# Global timers
+# global timers
 piper_time = 0
 ffmpeg_time = 0
+timing_function = time.time
 
 
 def text_to_audio(text, output_audio_path, model_path):
@@ -20,13 +21,13 @@ def text_to_audio(text, output_audio_path, model_path):
         "--model", model_path,
         "--output_file", output_audio_path
     ]
-    start_time = time.perf_counter()
+    start_time = timing_function()
     subprocess.run(
         piper_command,
         input=(text.strip() + '.').encode("utf-8"),
         check=True
     )
-    end_time = time.perf_counter()
+    end_time = timing_function()
     piper_time += end_time - start_time
 
 
@@ -53,13 +54,13 @@ def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, outp
                 "-shortest",
                 output_video_path
             ]
-            start_time = time.perf_counter()
+            start_time = timing_function()
             if show_ffmpeg:
                 subprocess.run(ffmpeg_command, check=True)
             else:
                 with open(os.devnull, "w") as devnull:
                     subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
-            end_time = time.perf_counter()
+            end_time = timing_function()
             ffmpeg_time += end_time - start_time
 
 
@@ -97,17 +98,21 @@ def concatenate_chunks(temp_chunks, output_video_path):
             "-c", "copy",
             output_video_path
         ]
-        start_time = time.perf_counter()
+        start_time = timing_function()
         with open(os.devnull, "w") as devnull:
             subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
-        end_time = time.perf_counter()
+        end_time = timing_function()
         ffmpeg_time += end_time - start_time
 
 
 def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, resolution, show_ffmpeg=False, skip=False):
+    global ffmpeg_time
+    ffmpeg_time = 0
+    global piper_time
+    piper_time = 0
     if not skip:
         temp_chunks = []
-        start_time = time.perf_counter()
+        start_time = timing_function()
         for script in scripts:
             temp_chunk = tempfile.NamedTemporaryFile(suffix=".mp4")
             temp_chunks.append(temp_chunk)
@@ -127,7 +132,7 @@ def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, 
         )
         for temp_chunk in temp_chunks:
             temp_chunk.close()
-        end_time = time.perf_counter()
+        end_time = timing_function()
         # Print timing results
         total_runtime = end_time - start_time
         print(f"\033[1mTotal runtime: {total_runtime:.2f} seconds\033[0m")
