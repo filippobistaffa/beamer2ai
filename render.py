@@ -105,7 +105,7 @@ def concatenate_chunks(temp_chunks, output_video_path):
 
 
 def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, resolution, show_ffmpeg=False, skip=False):
-    if not(skip):
+    if not skip:
         temp_chunks = []
         start_time = time.perf_counter()
         for script in scripts:
