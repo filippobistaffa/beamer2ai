@@ -79,7 +79,7 @@ if __name__ == "__main__":
             {
                 "text": 'In this demonstration, we show how to calculate the green route from Plaza de Catalunya to the Sagrada Familia. ' +
                         'The prototype shows basic statistics such as the length of the green route compared to the shortest one, ' +
-                        'and the reduction in terms of air pollutant exposure, NO2 in this example.',
+                        'and the reduction in terms of air pollutant exposure, N O two in this example.',
                 "pdf_page_number": 1,
             },
             {
@@ -110,7 +110,7 @@ if __name__ == "__main__":
         scripts=[
             {
                 "text": 'Overall, our tests conducted on popular starting and destination points in Barcelona show ' +
-                        'a reduction of NO2 exposure of −7.82%. These results corroborate the indication that ' +
+                        'a reduction of N O two exposure of −7.82%. These results corroborate the indication that ' +
                         'green routes are very beneficial both for individual and public administrations. ' +
                         'Similar results have been obtained in other major cities, demonstrating that green routes ' +
                         'can be a simple, yet very effective solution to improve citizens\' health.',
