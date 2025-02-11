@@ -30,5 +30,5 @@ Notes on Piper _vs_ Bark
 ----------
 
 - Piper generates a voice arguably less realistic than [Bark](https://github.com/filippobistaffa/beamer2ai/tree/bark), but it's more reliable.
-- Piper works better than Bark with [non-English languages](https://github.com/rhasspy/piper/blob/master/VOICES.md) as well ([listen to voice samples](https://rhasspy.github.io/piper-samples) of available languages)
+- Piper works better than Bark with [non-English languages](https://github.com/rhasspy/piper/blob/master/VOICES.md) as well (see the [example](https://github.com/filippobistaffa/beamer2ai/blob/piper/spanish.py) for Spanish).
 - Piper is faster than Bark (fast enough for CPU real-time inference).
