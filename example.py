@@ -110,7 +110,7 @@ if __name__ == "__main__":
         scripts=[
             {
                 "text": 'Overall, our tests conducted on popular starting and destination points in Barcelona show ' +
-                        'a reduction of NO2 exposure of −7.23%. These results corroborate the indication that ' +
+                        'a reduction of NO2 exposure of −7.82%. These results corroborate the indication that ' +
                         'green routes are very beneficial both for individual and public administrations. ' +
                         'Similar results have been obtained in other major cities, demonstrating that green routes ' +
                         'can be a simple, yet very effective solution to improve citizens\' health.',
