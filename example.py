@@ -66,8 +66,8 @@ if __name__ == "__main__":
                 "pdf_page_number": 9,
             },
         ],
-        model_path="voices/en_GB-northern_english_male-medium.onnx",
-        speed=1.4, # 40% slower
+        model_path="voices/en_US-hfc_male-medium.onnx",
+        speed=1.3,
         output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -99,8 +99,8 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        model_path="voices/en_GB-northern_english_male-medium.onnx",
-        speed=1.4,
+        model_path="voices/en_US-hfc_male-medium.onnx",
+        speed=1.3,
         output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -119,8 +119,8 @@ if __name__ == "__main__":
                 "pdf_page_number": 10,
             },
         ],
-        model_path="voices/en_GB-northern_english_male-medium.onnx",
-        speed=1.4,
+        model_path="voices/en_US-hfc_male-medium.onnx",
+        speed=1.3,
         output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
         skip=False
