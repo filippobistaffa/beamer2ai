@@ -12,7 +12,7 @@ if __name__ == "__main__":
         dpi=600,
         scripts=[
             {
-                "text": 'Welcome to the presentation of our work entitled "Recommending Green Routes for Pedestrians ' +
+                "text": 'Welcome to the presentation of our work entitled: "Recommending Green Routes for Pedestrians ' +
                         'to Reduce the Exposure to Air Pollutants in Barcelona". This is joint work between the ' +
                         'Artificial Intelligence Research Institute and the UPF University in Barcelona.',
                 "pdf_page_number": 1,
