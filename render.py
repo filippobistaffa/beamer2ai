@@ -13,23 +13,38 @@ ffmpeg_time = 0
 timing_function = time.time
 
 
-def text_to_audio(text, output_audio_path, model_path, speed):
-    global piper_time
-    print("Generating audio from sentences...")
-    piper_command = [
-        os.path.join("piper", "piper"),
-        "--model", model_path,
-        "--output_file", output_audio_path,
-        "--length_scale", str(speed)
-    ]
-    start_time = timing_function()
-    subprocess.run(
-        piper_command,
-        input=(text.strip() + '.').encode("utf-8"),
-        check=True
-    )
-    end_time = timing_function()
-    piper_time += end_time - start_time
+def text_to_audio(text, output_audio_path, model_path, speed, append_silence=1):
+    with tempfile.NamedTemporaryFile(suffix=".wav") as temp_audio:
+        global piper_time
+        global ffmpeg_time
+        print("Generating audio from sentences...")
+        piper_command = [
+            os.path.join("piper", "piper"),
+            "--model", model_path,
+            "--output_file", temp_audio.name,
+            "--length_scale", str(speed)
+        ]
+        start_time = timing_function()
+        subprocess.run(
+            piper_command,
+            input=(text.strip() + '.').encode("utf-8"),
+            check=True
+        )
+        end_time = timing_function()
+        piper_time += end_time - start_time
+        start_time = timing_function()
+        ffmpeg_command = [
+            "ffmpeg",
+            "-y",
+            "-i", temp_audio.name,
+            "-af", f"apad=pad_dur={append_silence}",
+            "-c:a", "pcm_s16le",
+            output_audio_path
+        ]
+        with open(os.devnull, "w") as devnull:
+            subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
+        end_time = timing_function()
+        ffmpeg_time += end_time - start_time
 
 
 def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, output_video_path, resolution, show_ffmpeg):
