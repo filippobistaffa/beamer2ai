@@ -32,7 +32,6 @@ def text_to_audio(text, output_audio_path, model_path, speed, append_silence=1):
         )
         end_time = timing_function()
         piper_time += end_time - start_time
-        start_time = timing_function()
         ffmpeg_command = [
             "ffmpeg",
             "-y",
@@ -41,6 +40,7 @@ def text_to_audio(text, output_audio_path, model_path, speed, append_silence=1):
             "-c:a", "pcm_s16le",
             output_audio_path
         ]
+        start_time = timing_function()
         with open(os.devnull, "w") as devnull:
             subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
         end_time = timing_function()
