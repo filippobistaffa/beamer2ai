@@ -3,9 +3,7 @@ from render import generate_video
 
 if __name__ == "__main__":
 
-    # Piper models
-    # https://github.com/rhasspy/piper/blob/master/VOICES.md
-    # https://rhasspy.github.io/piper-samples/
+    speaker = "Craig Gutsy"
 
     generate_video(
         input_pdf_path="beamer.pdf",
@@ -66,8 +64,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 9,
             },
         ],
-        model_path="voices/en_US-hfc_male-medium.onnx",
-        speed=1.3,
+        speaker=speaker,
         output_video_path="chunk_1.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -99,8 +96,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 4,
             },
         ],
-        model_path="voices/en_US-hfc_male-medium.onnx",
-        speed=1.3,
+        speaker=speaker,
         output_video_path="chunk_2.mp4",
         resolution=(3840, 2160),
         skip=False
@@ -119,8 +115,7 @@ if __name__ == "__main__":
                 "pdf_page_number": 10,
             },
         ],
-        model_path="voices/en_US-hfc_male-medium.onnx",
-        speed=1.3,
+        speaker=speaker,
         output_video_path="chunk_3.mp4",
         resolution=(3840, 2160),
         skip=False

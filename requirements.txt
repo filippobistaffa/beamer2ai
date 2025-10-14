@@ -1,1 +1,2 @@
+coqui-tts
 pymupdf

@@ -7,31 +7,30 @@ import tempfile
 import time
 import os
 
+# TTS modules
+from TTS.api import TTS
+tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
+
 # global timers
-piper_time = 0
+tts_time = 0
 ffmpeg_time = 0
 timing_function = time.time
 
 
-def text_to_audio(text, output_audio_path, model_path, speed, append_silence=1):
+def text_to_audio(text, output_audio_path, speaker, language, append_silence=1):
     with tempfile.NamedTemporaryFile(suffix=".wav") as temp_audio:
-        global piper_time
+        global tts_time
         global ffmpeg_time
         print("Generating audio from sentences...")
-        piper_command = [
-            os.path.join("piper", "piper"),
-            "--model", model_path,
-            "--output_file", temp_audio.name,
-            "--length_scale", str(speed)
-        ]
         start_time = timing_function()
-        subprocess.run(
-            piper_command,
-            input=(text.strip() + '.').encode("utf-8"),
-            check=True
+        tts.tts_to_file(
+            text=text,
+            file_path=temp_audio.name,
+            speaker=speaker,
+            language=language
         )
         end_time = timing_function()
-        piper_time += end_time - start_time
+        tts_time += end_time - start_time
         ffmpeg_command = [
             "ffmpeg",
             "-y",
@@ -80,13 +79,13 @@ def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, outp
             ffmpeg_time += end_time - start_time
 
 
-def text_page_to_video(text, model_path, speed, input_pdf_path, dpi, page_number, output_video_path, resolution, show_ffmpeg):
+def text_page_to_video(text, speaker, language, input_pdf_path, dpi, page_number, output_video_path, resolution, show_ffmpeg):
     with tempfile.NamedTemporaryFile(suffix=".wav") as temp_audio:
         text_to_audio(
             text=text,
             output_audio_path=temp_audio.name,
-            model_path=model_path,
-            speed=speed
+            speaker=speaker,
+            language=language
         )
         page_audio_to_video(
             input_pdf_path=input_pdf_path,
@@ -122,11 +121,11 @@ def concatenate_chunks(temp_chunks, output_video_path):
         ffmpeg_time += end_time - start_time
 
 
-def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, resolution, speed=1, show_ffmpeg=False, skip=False):
+def generate_video(input_pdf_path, dpi, scripts, speaker, output_video_path, resolution, language="en", show_ffmpeg=False, skip=False):
     global ffmpeg_time
     ffmpeg_time = 0
-    global piper_time
-    piper_time = 0
+    global tts_time
+    tts_time = 0
     if not skip:
         temp_chunks = []
         start_time = timing_function()
@@ -136,8 +135,8 @@ def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, 
             text_page_to_video(
                 text=script["text"],
                 page_number=script["pdf_page_number"],
-                model_path=model_path,
-                speed=speed,
+                speaker=speaker,
+                language=language,
                 input_pdf_path=input_pdf_path,
                 dpi=dpi,
                 output_video_path=temp_chunk.name,
@@ -154,5 +153,5 @@ def generate_video(input_pdf_path, dpi, scripts, model_path, output_video_path, 
         # Print timing results
         total_runtime = end_time - start_time
         print(f"\033[1mTotal runtime: {total_runtime:.2f} seconds\033[0m")
-        print(f"\033[1mTotal Piper runtime: {piper_time:.2f} seconds ({(piper_time / total_runtime) * 100:.2f}%)\033[0m")
+        print(f"\033[1mTotal TTS runtime: {tts_time:.2f} seconds ({(tts_time / total_runtime) * 100:.2f}%)\033[0m")
         print(f"\033[1mTotal FFmpeg runtime: {ffmpeg_time:.2f} seconds ({(ffmpeg_time / total_runtime) * 100:.2f}%)\033[0m")
