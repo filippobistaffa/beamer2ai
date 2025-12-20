@@ -1,51 +1,51 @@
+import warnings
+warnings.filterwarnings("ignore", ".*NVML*")
+warnings.filterwarnings("ignore", ".*dropout option adds dropout after all but last recurrent layer*")
+warnings.filterwarnings("ignore", ".*is deprecated*")
+
 # PDF image extraction
 import fitz
 
 # standard packages
+import numpy as np
 import subprocess
 import tempfile
 import time
 import os
-
-# TTS modules
-import torch
-from TTS.api import TTS
-device = "cuda" if torch.cuda.is_available() else "cpu"
-tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 
 # global timers
 tts_time = 0
 ffmpeg_time = 0
 timing_function = time.time
 
+# kokoro
+import soundfile as sf
+from kokoro import KPipeline
+from scipy.io.wavfile import write as write_wav
+SAMPLE_RATE = 24000 # kokoro's sample rate
 
-def text_to_audio(text, output_audio_path, speaker, language, append_silence=1):
-    with tempfile.NamedTemporaryFile(suffix=".wav") as temp_audio:
-        global tts_time
-        global ffmpeg_time
-        print("Generating audio from sentences...")
-        start_time = timing_function()
-        tts.tts_to_file(
-            text=text,
-            file_path=temp_audio.name,
-            speaker=speaker,
-            language=language
-        )
-        end_time = timing_function()
-        tts_time += end_time - start_time
-        ffmpeg_command = [
-            "ffmpeg",
-            "-y",
-            "-i", temp_audio.name,
-            "-af", f"apad=pad_dur={append_silence}",
-            "-c:a", "pcm_s16le",
-            output_audio_path
-        ]
-        start_time = timing_function()
-        with open(os.devnull, "w") as devnull:
-            subprocess.run(ffmpeg_command, check=True, stdout=devnull, stderr=devnull)
-        end_time = timing_function()
-        ffmpeg_time += end_time - start_time
+# kokoro's languages
+# 🇺🇸 'a' => American English
+# 🇬🇧 'b' => British English
+# 🇪🇸 'e' => Spanish es
+# 🇫🇷 'f' => French fr-fr
+# 🇮🇳 'h' => Hindi hi
+# 🇮🇹 'i' => Italian it
+
+def text_to_audio(text, output_audio_path, speaker, language):
+    global tts_time
+    global ffmpeg_time
+    start_time = timing_function()
+    silence = np.zeros(int(0.25 * SAMPLE_RATE))
+    audio_chunks = []
+    pipeline = KPipeline(lang_code=language, repo_id='hexgrad/Kokoro-82M')
+    generator = pipeline(text, voice=speaker)
+    for i, (gs, ps, audio_array) in enumerate(generator):
+        print(i, gs, ps)
+        audio_chunks += [audio_array, silence.copy()]
+    write_wav(output_audio_path, rate=SAMPLE_RATE, data=np.concatenate(audio_chunks))
+    end_time = timing_function()
+    tts_time += end_time - start_time
 
 
 def page_audio_to_video(input_pdf_path, dpi, page_number, input_audio_path, output_video_path, resolution, show_ffmpeg):
@@ -123,7 +123,7 @@ def concatenate_chunks(temp_chunks, output_video_path):
         ffmpeg_time += end_time - start_time
 
 
-def generate_video(input_pdf_path, dpi, scripts, speaker, output_video_path, resolution, language="en", show_ffmpeg=False, skip=False):
+def generate_video(input_pdf_path, dpi, scripts, speaker, output_video_path, resolution, language="a", show_ffmpeg=False, skip=False):
     global ffmpeg_time
     ffmpeg_time = 0
     global tts_time
