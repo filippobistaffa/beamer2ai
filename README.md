@@ -1,6 +1,6 @@
 Generate Video Presentations from PDF Slides
 ===================
-This project allows one to generate a video presentation based on PDF slides. Specifically, provided a text script for each slide, the presentation is narrated using the voice generated with [XTTS-v2](https://github.com/idiap/coqui-ai-TTS), a SOTA TTS model.
+This project allows one to generate a video presentation based on PDF slides. Specifically, provided a text script for each slide, the presentation is narrated using the voice generated with [kokoro](https://github.com/hexgrad/kokoro), a SOTA TTS model.
 
 
 Dependencies
